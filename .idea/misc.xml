@@ -4,7 +4,15 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.39794871794871794" />
+        <entry key="app/src/main/res/drawable/button_green.xml" value="0.2359375" />
+        <entry key="app/src/main/res/drawable/button_grey.xml" value="0.2359375" />
+        <entry key="app/src/main/res/drawable/button_operand.xml" value="0.2359375" />
+        <entry key="app/src/main/res/drawable/button_operator.xml" value="0.2359375" />
+        <entry key="app/src/main/res/drawable/button_pressed.xml" value="0.2359375" />
+        <entry key="app/src/main/res/drawable/button_white.xml" value="0.2359375" />
+        <entry key="app/src/main/res/drawable/buttons.xml" value="0.2359375" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.32592592592592595" />
+        <entry key="app/src/main/res/drawable/splash_background.xml" value="0.2359375" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.22327898550724637" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.32592592592592595" />
         <entry key="app/src/main/res/mipmap-hdpi/ic_launcher.xml" value="0.2359375" />
