@@ -65,16 +65,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if(isButtonANumber(buttonPressed)){
             if(currentText.equals("0")){
                 this.textView.setText(buttonPressed);
-                this.accumulator = Double.valueOf(this.textView.getText().toString());
+                this.accumulator = Double.valueOf(this.textView.getText().toString()); // Start accumulator as first number typed
             }
             else{
-                // if last button was an operator, update operand
-                this.operand = this.isLastButtonAnOperator() ? Double.valueOf(buttonPressed) : Double.valueOf(this.textView.getText().toString() + buttonPressed);
-                if (this.isLastButtonAnOperator()){ // If previous button was an operator, replace the text in the result
-                    this.textView.setText(buttonPressed);
-                }
-                else{ // If previous button was NOT an operator, append the new text to the old text
+                if(this.operator.isEmpty()){
                     this.textView.append(buttonPressed);
+                    this.accumulator = Double.valueOf(this.textView.getText().toString());
+                }
+                else {
+                    // if last button was an operator, update operand
+                    this.operand = this.isLastButtonAnOperator() ? Double.valueOf(buttonPressed) : Double.valueOf(this.textView.getText().toString() + buttonPressed);
+                    if (this.isLastButtonAnOperator()){ // If previous button was an operator, replace the text in the result
+                        this.textView.setText(buttonPressed);
+                    }
+                    else{ // If previous button was NOT an operator, append the new text to the old text
+                        this.textView.append(buttonPressed);
+                    }
                 }
             }
         }
