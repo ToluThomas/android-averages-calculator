@@ -7,12 +7,46 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:id="@+id/result"
+        android:layout_width="match_parent"
+        android:layout_height="155dp"
+        android:text="@string/zero"
+        android:fontFamily="sans-serif-thin"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display3"
+        android:textColor="@color/black"
+        android:textSize="80sp"
+        android:typeface="sans"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:paddingHorizontal="20dp"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="1dp" />
+
+    <com.google.android.flexbox.FlexboxLayout
+        android:id="@+id/operands_container"
+        android:layout_width="300dp"
+        android:layout_height="440dp"
+        app:flexWrap="wrap"
+        app:justifyContent="space_between"
+        app:alignContent="space_between"
+        android:paddingBottom="10dp"
+        android:paddingHorizontal="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent">
+
+    </com.google.android.flexbox.FlexboxLayout>
+
+    <com.google.android.flexbox.FlexboxLayout
+        android:id="@+id/operators_container"
+        android:layout_width="110dp"
+        android:layout_height="440dp"
+        app:flexWrap="wrap"
+        app:justifyContent="space_between"
+        app:alignContent="space_between"
+        android:paddingBottom="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+    </com.google.android.flexbox.FlexboxLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
