@@ -55,6 +55,7 @@ public class CalculatorButton extends androidx.appcompat.widget.AppCompatButton 
         this.button.setLayoutParams(defaultLayoutParams); // Use default width and height
     }
 
+    // Return the generated button
     public Button getButton(){
         return this.button;
     }
