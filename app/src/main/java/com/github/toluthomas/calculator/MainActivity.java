@@ -48,8 +48,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     protected void createButtons(String[] buttonNames, FlexboxLayout layout, ViewGroup.LayoutParams layoutParams, Context context, Drawable background, int index){
         for (String buttonName: buttonNames) { // Iterate over array of button names to create buttons with those names
-            System.out.println(buttonName);
-            System.out.println(index);
             // Initialise a new button that will be added to the calculator
             Button button = new CalculatorButton(context, buttonName, background, index, layoutParams).getButton();
             button.setOnClickListener(this);
@@ -106,9 +104,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void accumulate(String operator){
-        System.out.println(this.operator);
-        System.out.println(this.operand);
-        System.out.println(this.accumulator);
         // Determine the operation to perform on operand and accumulator by the operator supplied
         switch(operator){
             case "+":
