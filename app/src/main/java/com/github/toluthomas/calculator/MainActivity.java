@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     String lastButtonPressed; // Last button that the user pressed
 
     Double accumulator = 0.0; // Result of calculation
-    Double operand; // Current operand to perform operation with
+    Double operand = 0.0; // Current operand to perform operation with
     String operator = ""; // Current operator to perform operation with
 
     @Override
@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if(isButtonANumber(buttonPressed)){
             if(currentText.equals("0")){
                 this.textView.setText(buttonPressed);
-                this.operand = Double.valueOf(this.textView.getText().toString());
+                this.accumulator = Double.valueOf(this.textView.getText().toString());
             }
             else{
                 // if last button was an operator, update operand
@@ -85,21 +85,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         // Check if button pressed can be used to calculate
         else if (Arrays.asList("+", "-", "x", "/").contains(buttonPressed)){
-            if (this.operand == 0.0 && buttonPressed.equals("/")){ // If user is trying to divide by 0
-                this.allClear(); // Reset operand, operator, and accumulator
-                this.textView.setText(R.string.Undefined); // Show undefined
-            }
-            else {
-                this.accumulate(buttonPressed); // Calculate new result
-                this.textView.setText(String.valueOf(this.accumulator)); // Show result
-                this.operator = buttonPressed; // Record the operator that the user has selected
-            }
+            this.operator = buttonPressed; // Record the operator that the user has selected
         }
         // Check if button pressed is =
         else if (buttonPressed.equals("=")){
             if(!this.operator.isEmpty()){ // Check if current operator is NOT empty
-                this.accumulate(this.operator); // Calculate new result
-                this.textView.setText(String.valueOf(this.accumulator)); // Show result
+                Double zero = 0.0;
+                if (zero.equals(this.operand) && this.operator.equals("/")){ // If user is trying to divide by 0
+                    this.allClear(); // Reset operand, operator, and accumulator
+                    this.textView.setText(R.string.Undefined); // Show undefined
+                }
+                else{
+                    this.accumulate(this.operator); // Calculate new result
+                    this.textView.setText(String.valueOf(this.accumulator)); // Show result
+                }
             }
         }
         // If user presses the AC button, clear result
