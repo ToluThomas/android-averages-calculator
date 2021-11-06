@@ -64,13 +64,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // Check if button is a number
         if(isButtonANumber(buttonPressed)){
             if(currentText.equals("0")){
-                this.textView.setText(buttonPressed);
+                this.textView.setText(buttonPressed); // Replace the text in the result text view if no number has been typed
                 this.accumulator = Double.valueOf(this.textView.getText().toString()); // Start accumulator as first number typed
             }
             else{
+                // Check if an operator exists. Absence of operator tells us that the user it still typing their first input
                 if(this.operator.isEmpty()){
-                    this.textView.append(buttonPressed);
-                    this.accumulator = Double.valueOf(this.textView.getText().toString());
+                    this.textView.append(buttonPressed); // So, append the text to the text view on the screen
+                    this.accumulator = Double.valueOf(this.textView.getText().toString()); // Then assign the current text to accumulator
                 }
                 else {
                     // if last button was an operator, update operand
