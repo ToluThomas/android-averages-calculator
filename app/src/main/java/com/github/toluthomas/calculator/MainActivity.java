@@ -85,9 +85,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         // Check if button pressed can be used to calculate
         else if (Arrays.asList("+", "-", "x", "/").contains(buttonPressed)){
-            this.accumulate(buttonPressed); // Calculate new result
-            this.textView.setText(String.valueOf(this.accumulator)); // Show result
-            this.operator = buttonPressed; // Record the operator that the user has selected
+            if (this.operand == 0.0 && buttonPressed.equals("/")){ // If user is trying to divide by 0
+                this.allClear(); // Reset operand, operator, and accumulator
+                this.textView.setText(R.string.Undefined); // Show undefined
+            }
+            else {
+                this.accumulate(buttonPressed); // Calculate new result
+                this.textView.setText(String.valueOf(this.accumulator)); // Show result
+                this.operator = buttonPressed; // Record the operator that the user has selected
+            }
         }
         // Check if button pressed is =
         else if (buttonPressed.equals("=")){
@@ -116,7 +122,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 this.accumulator*=this.operand; // Multiply accumulator by operand
                 break;
             case "/":
-                this.accumulator/=this.operand == 0.0 ? 1 : this.operand; // Divide accumulator by operand (avoid undefined)
+                this.accumulator/=this.operand; // Divide accumulator by operand
                 break;
             default: // If operator does not match any of the above, leave the Switch
                 break;
