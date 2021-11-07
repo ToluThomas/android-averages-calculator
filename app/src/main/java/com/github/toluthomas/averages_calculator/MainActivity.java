@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.github.toluthomas.averages_calculator.components.CalculatorButton;
 import com.google.android.flexbox.FlexboxLayout;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -30,6 +31,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Double operand = 0.0; // Current operand to perform operation with
     String operator = ""; // Current operator to perform operation with
 
+    ArrayList<String> numbers = new ArrayList<>(); // New instance of ArrayList to hold numbers as user inputs them
+    ArrayList<Double> doubleNumbers = new ArrayList<>(); // Save numbers to be operated on
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         this.operandsContainer = findViewById(R.id.operands_container); // Get the container of the operands
         this.operatorsContainer = findViewById(R.id.operators_container); // Get the container of the operators
         this.textView = findViewById(R.id.result); // Get the text view where inputs will go
-        this.operators = new String[]{"+", "-", "x", "->"}; // Prepare the operators
+        this.operators = new String[]{"AC", "x̄", "x̃", "Mo", "->"}; // Prepare the operators
         this.operands = new String[]{"1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ".", "AC"}; // Prepare the operands
         this.buttonSize = new FlexboxLayout.LayoutParams(200, 200); // Set size of buttons
         this.operandBackground = AppCompatResources.getDrawable(this, R.drawable.button_white); // Background for each operand
@@ -284,15 +288,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case 12: // AC
                 return "AC";
             case 13: // +
-                return "+";
+                return "x̄";
             case 14: // -
-                return "-";
+                return "x̃";
             case 15: // x
-                return "x";
+                return "Mo";
             case 16: // /
-                return "/";
-            case 17: // =
-                return "=";
+                return "->";
             default: // 1, 2, 3, 4, 5, 6, 7, 8, 9, 0
                 return ("" + id).equals("10") ? "0" : "" + id; // If the ID is 10, the button is 0. Otherwise, return the ID of the button
         }

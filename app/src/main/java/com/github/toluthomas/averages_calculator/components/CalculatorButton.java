@@ -13,7 +13,6 @@ import androidx.core.content.res.ResourcesCompat;
 public class CalculatorButton extends androidx.appcompat.widget.AppCompatButton {
     private Button button;
     final String defaultButtonName = "";
-    @SuppressLint("UseCompatLoadingForDrawables")
     final Drawable defaultButtonBackground = ResourcesCompat.getDrawable(getResources(), android.R.drawable.btn_default, null);
     final int defaultIndex = 0;
     final int defaultWidth = 100;
