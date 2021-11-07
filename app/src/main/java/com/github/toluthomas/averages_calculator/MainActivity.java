@@ -27,8 +27,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ViewGroup.LayoutParams buttonSize; // Dimensions for calculator buttons
     TextView numbersTextView, resultTextView; // Text view where result and numbers will show
 
-    String lastButtonPressed; // Last button that the user pressed
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,13 +85,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // Append number to the list of numbers in numbers text view
         else if (buttonPressed.equals("->")){
             // Only append a comma if there's already a number in the text view
-            if (!numbersTextView.getText().toString().isEmpty()){
-                this.numbersTextView.append(",");
-            }
-            // Prevent repeated commas
-            else if(!this.lastButtonPressed.equals(",")){
-                this.numbersTextView.append(",");
-            }
+            if (!numbersTextView.getText().toString().isEmpty())
+                // Prevent repeated commas
+                if(!currentText.substring(currentText.length() - 1).equals(","))
+                        this.numbersTextView.append(","); // If last char in string does not have , you can append it
         }
         // If user presses the C button, backspace
         else if (buttonPressed.equals("C")){
@@ -103,7 +98,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         else if (buttonPressed.equals("AC")){
             this.allClear(); // Clear everything
         }
-        this.lastButtonPressed = buttonPressed; // Keep track of the last button that user pressed
     }
 
     private void backspace(){
@@ -117,7 +111,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void allClear(){
         this.numbersTextView.setText(""); // Reset numbers display
         this.resultTextView.setText("0"); // Reset result display
-        this.lastButtonPressed = ""; // Reset the last button pressed
     }
 
     private ArrayList<Integer> getIntNumbers(){
@@ -131,14 +124,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private Double getMean(int sum, int count){
         return (sum * 1.0)/count; // To cast to double (if we get a decimal during division)
-        // TODO: handle undefined
     }
 
     private Double getMedian(ArrayList<Integer> numbers){
         Collections.sort(numbers); // Sort array of numbers in ascending order
         int n = numbers.size(); // where n is length of array
         if (n % 2 == 0) // If array has an even length, median is average of middle two numbers
-            return ((numbers.get(n / 2 - 1) + numbers.get(n / 2)) * 1.0)/2; // TODO: handle undefined
+            return ((numbers.get(n / 2 - 1) + numbers.get(n / 2)) * 1.0)/2;
         else // If array has an odd length, median is middle number
             return (double) numbers.get(n / 2);
     }
