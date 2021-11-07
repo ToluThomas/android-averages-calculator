@@ -99,6 +99,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         else if (buttonPressed.equals("C")){
             this.backspace(); // Backspace
         }
+        // If user presses the AC button, clear all
+        else if (buttonPressed.equals("AC")){
+            this.allClear(); // Clear everything
+        }
         this.lastButtonPressed = buttonPressed; // Keep track of the last button that user pressed
     }
 
@@ -108,6 +112,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // If user has, create a new string that ends before the last character
         String newText = currentText.length() > 0 ? currentText.substring(0, currentText.length()) : currentText;
         numbersTextView.setText(newText);
+    }
+
+    private void allClear(){
+        this.numbersTextView.setText(""); // Reset numbers display
+        this.resultTextView.setText(""); // Reset result display
+        this.lastButtonPressed = ""; // Reset the last button pressed
     }
 
     private ArrayList<Integer> getIntNumbers(){
