@@ -118,7 +118,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ArrayList<Integer> intNumbers = new ArrayList<>(); // A place to numbers to be operated on
         String[] stringNumbers = numbers.split(","); // Get comma delimited numbers
         for (String stringNumber: stringNumbers) // Loop through the numbers (strings)
-            intNumbers.add(Integer.valueOf(stringNumber)); // Save integer value of each string in array
+            if(!stringNumber.isEmpty()) // This can happen if user enters "1, 2," where there's a trailing comma
+                intNumbers.add(Integer.valueOf(stringNumber)); // Save integer value of each string in array
         return intNumbers; // Return the array list of integers
     }
 
