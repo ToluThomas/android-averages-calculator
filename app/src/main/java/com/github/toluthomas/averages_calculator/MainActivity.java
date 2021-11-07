@@ -15,12 +15,10 @@ import android.widget.TextView;
 import com.github.toluthomas.averages_calculator.components.CalculatorButton;
 import com.google.android.flexbox.FlexboxLayout;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     FlexboxLayout operandsContainer, operatorsContainer; // Containers for calculator buttons
@@ -30,12 +28,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     TextView numbersTextView, resultTextView; // Text view where result and numbers will show
 
     String lastButtonPressed; // Last button that the user pressed
-
-    Double accumulator = 0.0; // Result of calculation
-    Double operand = 0.0; // Current operand to perform operation with
-    String operator = ""; // Current operator to perform operation with
-
-    String numbers; // New array of Strings to hold numbers as user inputs them
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,7 +99,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         else if (buttonPressed.equals("C")){
             this.backspace(); // Backspace
         }
-        this.numbers = this.numbersTextView.getText().toString(); // Get the numbers in the text view
         this.lastButtonPressed = buttonPressed; // Keep track of the last button that user pressed
     }
 
@@ -120,8 +111,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private ArrayList<Integer> getIntNumbers(){
+        String numbers = this.numbersTextView.getText().toString(); // Get the text in the numbers text view
         ArrayList<Integer> intNumbers = new ArrayList<>(); // A place to numbers to be operated on
-        String[] stringNumbers = this.numbers.split(","); // Get comma delimited numbers
+        String[] stringNumbers = numbers.split(","); // Get comma delimited numbers
         for (String stringNumber: stringNumbers) // Loop through the numbers (strings)
             intNumbers.add(Integer.valueOf(stringNumber)); // Save integer value of each string in array
         return intNumbers; // Return the array list of integers
@@ -163,6 +155,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return mode; // Return mode
     }
 
+    // Numbers in an array list
     private int getSum(ArrayList<Integer> numbers){
         int sum = 0;
         for (int number: numbers)
@@ -170,139 +163,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return sum;
     }
 
-    private void accumulate(String operator){
-        // Determine the operation to perform on operand and accumulator by the operator supplied
-        switch(operator){
-            case "+":
-                this.accumulator+=this.operand; // Increment accumulator by operand
-                break;
-            case "-":
-                this.accumulator-=this.operand; // Decrement accumulator by operand
-                break;
-            case "x":
-                this.accumulator*=this.operand; // Multiply accumulator by operand
-                break;
-            case "/":
-                this.accumulator/=this.operand; // Divide accumulator by operand
-                break;
-            default: // If operator does not match any of the above, leave the Switch
-                break;
-        }
-    }
-    private boolean isDouble(String number){
-        return number.matches("[-+]?[0-9]*\\.?[0-9]+"); // Check if a number is a Double type
-    }
-
-    private boolean areDouble(String a, String b){
-        return this.isDouble(a) || this.isDouble(b); // Check if one of two numbers is a Double type
-    }
-
-    private double getDouble(String number){
-        return Double.parseDouble(number); // Attempt to get a Double from a string i.e if the string looks like a Double
-    }
-
-    private int getInt(String number){
-        return Integer.parseInt(number); // Attempt to get an integer from a string i.e if the string looks like an integer
-    }
-
-    private void add(int a, int b){
-        this.textView.setText(String.valueOf(a + b)); // Add two integers together
-    }
-
-    private void add(double a, double b){
-        this.textView.setText(String.valueOf(a + b)); // Add two Doubles together
-    }
-
-    private void subtract(int a, int b){
-        this.textView.setText(String.valueOf(a - b)); // Subtract an integer from another
-    }
-
-    private void subtract(double a, double b){
-        this.textView.setText(String.valueOf(a - b)); // Subtract a Double from another
-    }
-
-    // Divide one integer by another
-    private void divide(int a, int b){
-        if(b == 0){
-            this.textView.setText(R.string.Undefined); // Be careful if the divisor is 0. Show undefined in the result field
-        }
-        else{
-            this.textView.setText(String.valueOf(a/b)); // If divisor is not 0, continue with division
-        }
-    }
-
-    // Divide one Double by another
-    private void divide(double a, double b){
-        if(b == 0.0){
-            this.textView.setText(R.string.Undefined); // Be careful if the divisor is 0. Show undefined in the result field
-        }
-        else{
-            this.textView.setText(String.valueOf(a/b)); // If divisor is not 0, continue with division
-        }
-    }
-
-    // Multiply one integer by another
-    private void multiply(int a, int b){
-        this.textView.setText(String.valueOf(a * b)); // Update the result field with the result of the multiplication
-    }
-
-    // Multiply one integer by another
-    private void multiply(double a, double b){
-        this.textView.setText(String.valueOf(a * b)); // Update the result field with the result of the multiplication
-    }
-
-    // Perform operation on two integers depending on the operator passed
-    private void returnResult(int a, int b, String operator){
-        switch(operator){
-            case "+":
-                add(a, b); // Add two integers
-                break;
-            case "-":
-                subtract(a, b); // Subtract from integer from another
-                break;
-            case "x":
-                multiply(a, b); // Multiply one integer by another
-                break;
-            case "/":
-                divide(a, b); // Divide one integer by another
-                break;
-            default: // For instance, if equals, do nothing
-                break;
-        }
-    }
-
     // Check if a button is a number
     private boolean isButtonANumber(String button){
         return Arrays.asList("1", "2", "3", "4", "5", "6", "7", "8", "9", "0").contains(button);
     }
 
-    // Check if the last button that the user tapped is an operator
-    private boolean isLastButtonAnOperator() {
-        return Arrays.asList("+", "-", "x", "/", "=", "AC").contains(this.lastButtonPressed);
-    }
-
-    // Check if a button is an operator
-    private boolean isCurrentButtonAnOperator(String currentButton) {
-        return Arrays.asList("+", "-", "x", "/", "=", "AC").contains(currentButton);
-    }
-
     // Use the ID of the button to retrieve the associated button name
     private String getButtonPressed(int id){
         switch (id) {
-            case 11: // .
-                return ".";
-            case 12: // C
-                return "C";
-            case 13: // +
+            case 11: // AC
+                return "AC";
+            case 13: // C
+                return "C̄";
+            case 14: // x̄
                 return "x̄";
-            case 14: // -
+            case 15: // x̃
                 return "x̃";
-            case 15: // x
+            case 16: // Mo
                 return "Mo";
-            case 16: // /
+            case 17: // ->
                 return "->";
             default: // 1, 2, 3, 4, 5, 6, 7, 8, 9, 0
-                return ("" + id).equals("10") ? "0" : "" + id; // If the ID is 10, the button is 0. Otherwise, return the ID of the button
+                // If the ID is 10, the button is 0. Otherwise, return the ID of the button
+                return ("" + id).equals("10") ? "0" : "" + id;
         }
     }
 }
