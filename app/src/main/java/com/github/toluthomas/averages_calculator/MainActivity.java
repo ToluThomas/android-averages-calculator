@@ -1,4 +1,4 @@
-package com.github.toluthomas.calculator;
+package com.github.toluthomas.averages_calculator;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.github.toluthomas.calculator.components.CalculatorButton;
+import com.github.toluthomas.averages_calculator.components.CalculatorButton;
 import com.google.android.flexbox.FlexboxLayout;
 
 import java.util.Arrays;
@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         this.operandsContainer = findViewById(R.id.operands_container); // Get the container of the operands
         this.operatorsContainer = findViewById(R.id.operators_container); // Get the container of the operators
         this.textView = findViewById(R.id.result); // Get the text view where inputs will go
-        this.operators = new String[]{"+", "-", "x", "/", "="}; // Prepare the operators
+        this.operators = new String[]{"+", "-", "x", "->"}; // Prepare the operators
         this.operands = new String[]{"1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ".", "AC"}; // Prepare the operands
         this.buttonSize = new FlexboxLayout.LayoutParams(200, 200); // Set size of buttons
         this.operandBackground = AppCompatResources.getDrawable(this, R.drawable.button_white); // Background for each operand

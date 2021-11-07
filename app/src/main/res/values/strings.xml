@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Calculator</string>
+    <string name="app_name">Averages Calculator</string>
     <string name="zero">0</string>
     <string name="Undefined">Undefined</string>
 </resources>

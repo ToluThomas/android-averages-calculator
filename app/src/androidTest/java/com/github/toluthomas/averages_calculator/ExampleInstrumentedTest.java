@@ -1,4 +1,4 @@
-package com.github.toluthomas.calculator;
+package com.github.toluthomas.averages_calculator;
 
 import android.content.Context;
 

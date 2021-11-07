@@ -1,4 +1,4 @@
-package com.github.toluthomas.calculator.components;
+package com.github.toluthomas.averages_calculator.components;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -7,13 +7,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.res.ResourcesCompat;
 
 @SuppressLint("ViewConstructor")
 public class CalculatorButton extends androidx.appcompat.widget.AppCompatButton {
     private Button button;
     final String defaultButtonName = "";
     @SuppressLint("UseCompatLoadingForDrawables")
-    final Drawable defaultButtonBackground = getResources().getDrawable(android.R.drawable.btn_default);
+    final Drawable defaultButtonBackground = ResourcesCompat.getDrawable(getResources(), android.R.drawable.btn_default, null);
     final int defaultIndex = 0;
     final int defaultWidth = 100;
     final int defaultHeight = 100;
