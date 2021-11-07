@@ -116,7 +116,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void allClear(){
         this.numbersTextView.setText(""); // Reset numbers display
-        this.resultTextView.setText(""); // Reset result display
+        this.resultTextView.setText("0"); // Reset result display
         this.lastButtonPressed = ""; // Reset the last button pressed
     }
 
@@ -131,13 +131,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private Double getMean(int sum, int count){
         return (sum * 1.0)/count; // To cast to double (if we get a decimal during division)
+        // TODO: handle undefined
     }
 
     private Double getMedian(ArrayList<Integer> numbers){
         Collections.sort(numbers); // Sort array of numbers in ascending order
         int n = numbers.size(); // where n is length of array
         if (n % 2 == 0) // If array has an even length, median is average of middle two numbers
-            return ((numbers.get(n / 2 - 1) + numbers.get(n / 2)) * 1.0)/2;
+            return ((numbers.get(n / 2 - 1) + numbers.get(n / 2)) * 1.0)/2; // TODO: handle undefined
         else // If array has an odd length, median is middle number
             return (double) numbers.get(n / 2);
     }

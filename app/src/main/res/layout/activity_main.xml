@@ -30,7 +30,7 @@
         android:fontFamily="sans-serif-thin"
         android:maxLines="1"
         android:paddingHorizontal="20dp"
-        android:text="@string/zero"
+        android:text=""
         android:textAppearance="@style/TextAppearance.AppCompat.Display3"
         android:textColor="@color/black"
         android:textSize="30sp"
