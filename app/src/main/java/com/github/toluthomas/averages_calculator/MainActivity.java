@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         this.numbersTextView.append(","); // If last char in string does not have , you can append it
         }
         // If user presses the C button, backspace
-        else if (buttonPressed.equals("C")){
+        else if (buttonPressed.equals("C̄")){
             this.backspace(); // Backspace
         }
         // If user presses the AC button, clear all
@@ -104,8 +104,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String currentText = numbersTextView.getText().toString(); // Get the text that's currently in the number text view
         // If user has not typed anything, no need to backspace
         // If user has, create a new string that ends before the last character
-        String newText = currentText.length() > 0 ? currentText.substring(0, currentText.length()) : currentText;
-        numbersTextView.setText(newText);
+        String newText = currentText.length() > 0 ? currentText.substring(0, currentText.length() - 1) : currentText;
+        this.numbersTextView.setText(newText);
     }
 
     private void allClear(){
